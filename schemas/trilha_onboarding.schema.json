@@ -1,0 +1,144 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "trilha_onboarding.schema.json",
+  "title": "Trilha de onboarding",
+  "description": "Trilha personalizada por funcao e por pessoa. Itens com campo origem preenchido vieram de gaps da avaliacao de entrevista.",
+  "type": "object",
+  "required": ["colaborador", "blocos", "pessoas_chave", "acessos_necessarios"],
+  "additionalProperties": false,
+  "properties": {
+    "colaborador": {
+      "type": "object",
+      "required": ["nome", "funcao", "area", "gestor", "data_inicio"],
+      "additionalProperties": false,
+      "properties": {
+        "nome": { "type": "string" },
+        "funcao": { "type": "string" },
+        "area": { "type": "string" },
+        "gestor": { "type": "string" },
+        "data_inicio": { "type": "string", "format": "date" },
+        "modelo_trabalho": { "type": ["string", "null"] }
+      }
+    },
+    "vaga_id": { "type": ["string", "null"] },
+    "personalizada_com_avaliacao": {
+      "type": "boolean",
+      "description": "false quando gerada apenas da ficha da funcao, sem o avaliacao.json da pessoa."
+    },
+    "blocos": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["bloco", "itens"],
+        "additionalProperties": false,
+        "properties": {
+          "bloco": {
+            "type": "string",
+            "enum": ["PRE_INICIO", "DIA_1", "SEMANA_1", "DIAS_30", "DIAS_90"]
+          },
+          "itens": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 8,
+            "description": "4 a 8 itens por bloco. Trilha com 40 itens nao e acompanhada.",
+            "items": {
+              "type": "object",
+              "required": [
+                "item_id",
+                "titulo",
+                "tipo",
+                "dono",
+                "prazo_relativo",
+                "prazo_absoluto",
+                "criterio_concluido"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "item_id": { "type": "string" },
+                "titulo": { "type": "string" },
+                "descricao": { "type": ["string", "null"] },
+                "tipo": {
+                  "type": "string",
+                  "enum": ["ACESSO", "PESSOA", "CONTEUDO", "ENTREGA", "ADMINISTRATIVO"]
+                },
+                "dono": {
+                  "type": "string",
+                  "description": "Papel especifico. NUNCA 'RH' ou 'o time' generico."
+                },
+                "prazo_relativo": { "type": "string", "pattern": "^D[+-][0-9]+$" },
+                "prazo_absoluto": { "type": "string", "format": "date" },
+                "criterio_concluido": {
+                  "type": "string",
+                  "description": "Observavel e verificavel por terceiro. 'Participou de X' nao serve."
+                },
+                "origem": {
+                  "type": ["object", "null"],
+                  "description": "Preenchido quando o item nasceu de um gap da avaliacao da pessoa.",
+                  "additionalProperties": false,
+                  "properties": {
+                    "tipo": { "type": "string", "enum": ["avaliacao_entrevista", "ficha_funcao", "compliance"] },
+                    "criterio_id": { "type": ["string", "null"] },
+                    "referencia": { "type": ["string", "null"] }
+                  }
+                },
+                "notifica_slack": { "type": "boolean" },
+                "canal_slack": { "type": ["string", "null"] },
+                "bloqueia": {
+                  "type": "array",
+                  "description": "item_ids que dependem deste. Torna visivel o que trava a trilha.",
+                  "items": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "pessoas_chave": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["nome", "papel", "por_que_falar", "quando"],
+        "additionalProperties": false,
+        "properties": {
+          "nome": { "type": "string" },
+          "papel": { "type": "string" },
+          "por_que_falar": { "type": "string" },
+          "quando": {
+            "type": "string",
+            "enum": ["PRE_INICIO", "DIA_1", "SEMANA_1", "DIAS_30", "DIAS_90"]
+          }
+        }
+      }
+    },
+    "acessos_necessarios": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["sistema", "nivel", "solicitar_para", "prazo"],
+        "additionalProperties": false,
+        "properties": {
+          "sistema": { "type": "string" },
+          "nivel": { "type": "string" },
+          "solicitar_para": { "type": "string" },
+          "prazo": { "type": "string", "pattern": "^D[+-][0-9]+$" },
+          "risco": { "type": ["string", "null"] }
+        }
+      }
+    },
+    "marcos_de_acompanhamento": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["quando", "com_quem", "pauta"],
+        "additionalProperties": false,
+        "properties": {
+          "quando": { "type": "string", "pattern": "^D[+-][0-9]+$" },
+          "com_quem": { "type": "string" },
+          "pauta": { "type": "string" }
+        }
+      }
+    }
+  }
+}

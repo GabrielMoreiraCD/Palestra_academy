@@ -1,0 +1,251 @@
+TRANSCRIÇÃO DE ENTREVISTA
+Vaga: Analista de Dados Pleno — Planejamento e Dados
+Candidato: Caio Tavares
+Entrevistadores: Rogério Bastos (Gerente de Planejamento e Dados), Paula Nunes (RH)
+Data: 26/08/2026 · Duração: 47min · Videoconferência
+[Transcrição automática. Pode conter erros de grafia.]
+
+================================================================================
+BLOCO — ABERTURA
+================================================================================
+
+[00:12] PAULA: Caio, bom te ver. A ideia hoje é a gente entender melhor sua
+trajetória e você entender o que a gente precisa. O Rogério é o gestor da área.
+A conversa é de uns 45 minutos, tudo bem?
+
+[00:31] CAIO: Perfeito, obrigado pelo tempo.
+
+[00:36] ROGÉRIO: Rapidinho o contexto pra você: hoje somos três pessoas na área de
+dados e a gente não dá conta da demanda. As áreas pedem relatório direto, a fila não
+anda, e eu mesmo tô entrando no banco pra tirar consulta, o que não devia. Então é
+uma vaga pra desafogar isso e, principalmente, pra refazer o modelo de vendas que
+tá bem ruim.
+
+[01:10] CAIO: Entendi. Posso fazer uma pergunta já? Quando você diz que a fila não
+anda — o problema é volume de pedido mesmo ou é retrabalho? Porque são coisas bem
+diferentes de resolver.
+
+[01:24] ROGÉRIO: (pausa) Olha... boa pergunta. Acho que tem os dois. Tem bastante
+pedido, mas também tem muita coisa que a gente entrega e a área volta dizendo que
+não era aquilo.
+
+[01:41] CAIO: É, foi mais ou menos o que eu vivi lá. Depois eu conto.
+
+================================================================================
+BLOCO — TRAJETÓRIA
+================================================================================
+
+[02:05] PAULA: Me conta um pouco da sua trajetória. Você vem de finanças, né,
+desculpa, de planejamento financeiro, e migrou pra dados.
+
+[02:18] CAIO: Isso. Eu fiz Contábeis e passei uns dez anos em planejamento
+financeiro. Orçamento, forecast, fechamento mensal, apresentação de resultado pra
+diretoria. Na Meridiano eu era o responsável pelo forecast de receita da companhia
+inteira.
+
+[02:47] CAIO: O que aconteceu é que por volta de 2022 eu comecei a me irritar com o
+processo de fechamento. Era seis dias de planilha todo mês. Seis dias. E eu pedia
+dado pro time de BI e demorava, não porque eles fossem ruins, é que eles tinham fila
+igual a de vocês.
+
+[03:12] CAIO: Então eu comecei a aprender SQL pra tirar os meus próprios números.
+Primeiro só SELECT simples. Depois fui aprendendo junção, agregação, e em algum
+momento eu tinha reescrito o fechamento inteiro em consulta e Python.
+
+[03:35] ROGÉRIO: E quanto tempo levou pra fazer isso?
+
+[03:39] CAIO: Uns oito meses fazendo à noite e no fim de semana, e mais uns quatro
+pra estabilizar. O fechamento que era seis dias virou um processo que roda de
+madrugada. No dia primeiro de manhã o número tá lá.
+
+[04:02] ROGÉRIO: E ninguém pediu pra você fazer isso.
+
+[04:06] CAIO: Não. Na verdade eu tomei uma bronca no começo, porque eu tava mexendo
+em coisa que não era minha. Aí eu mostrei o resultado do primeiro mês e a conversa
+mudou.
+
+[04:22] PAULA: E aí você pediu transferência pra dados.
+
+[04:26] CAIO: Isso, no ano passado. Faz quase dois anos que eu tô oficialmente na
+área de dados, mas na prática eu já fazia isso há uns quatro.
+
+[04:40] PAULA: Caio, eu vi aqui no currículo que você teve um período de sete meses
+sem vínculo, entre 2018 e 2019. Pode me contar o que aconteceu?
+
+[04:53] CAIO: Posso. Minha mãe adoeceu e eu era o único que podia cuidar. Foi um
+período difícil. Eu saí da empresa pra conseguir dar conta. Nesses meses eu fiz o
+primeiro curso de análise de dados, que foi o que me abriu a cabeça pra essa área
+depois.
+
+[05:20] PAULA: Entendo, obrigada por compartilhar. E hoje você tem alguma questão
+familiar assim? Filho pequeno, alguém pra cuidar? É que a gente às vezes tem umas
+semanas mais puxadas aqui e eu queria saber se ia ter problema.
+
+[05:38] CAIO: (pausa) Hoje não tenho nada que me impeça de trabalhar normalmente,
+não.
+
+[05:44] PAULA: Ótimo, era só pra alinhar mesmo.
+
+================================================================================
+BLOCO — NÚCLEO
+================================================================================
+
+[06:20] ROGÉRIO: Você falou lá no começo que ia contar uma coisa sobre retrabalho.
+Conta.
+
+[06:28] CAIO: Ah sim. Foi o caso que mais me marcou. Ano passado o comercial pediu
+um relatório de churn de cliente. Queriam mensal, por região, por vendedor. Pedido
+claro, dava pra fazer em dois dias.
+
+[06:48] CAIO: Só que eu tinha vindo de planejamento, então eu conhecia a diretora
+comercial e sabia mais ou menos o que ela tava tentando resolver. Eu voltei e
+perguntei: o que vocês vão fazer com esse número quando ele chegar?
+
+[07:05] CAIO: E aí veio o que realmente era. Eles não queriam medir churn. Eles
+queriam saber em quais clientes valia a pena colocar o time de retenção antes do
+cliente sair. Isso é outra pergunta completamente. Relatório de churn te diz quem
+já foi embora.
+
+[07:28] ROGÉRIO: E o que você fez?
+
+[07:31] CAIO: A gente acabou construindo uma lista semanal de conta em risco, com
+três sinais simples: queda de volume comparado com a média da própria conta, aumento
+do intervalo entre pedidos, e chamado aberto sem resolver. Não tem modelo nenhum,
+não tem machine learning, é regra simples.
+
+[07:56] CAIO: Mas a lista era acionável. O time de retenção pegava as vinte contas
+do topo toda segunda-feira. No trimestre seguinte eles recuperaram alguma coisa como
+quarenta por cento das contas que entraram na lista. E o relatório de churn que eles
+tinham pedido no início, a gente nunca fez. Ninguém sentiu falta.
+
+[08:22] ROGÉRIO: (rindo) Esse é exatamente o problema que eu tenho aqui.
+
+[08:28] CAIO: Eu imaginei. É que quando você vem da área que pede o relatório, você
+sabe que o pedido nunca é a pergunta.
+
+[08:40] ROGÉRIO: Deixa eu perguntar uma coisa. E quando a área discorda? Quando você
+volta com "olha, acho que não é isso que vocês querem" e a pessoa insiste?
+
+[08:52] CAIO: Aí eu faço as duas coisas. Entrego o que pediram e entrego junto o que
+eu acho que resolve. Sem discurso. Deixa as duas na mesa e a pessoa escolhe. Discutir
+antes de mostrar quase nunca funciona, na minha experiência.
+
+[09:14] ROGÉRIO: Já deu errado alguma vez?
+
+[09:17] CAIO: Já. Teve uma vez que eu fiz a versão alternativa e a área achou que eu
+tava passando por cima. Aí eu aprendi a avisar antes: "vou fazer o que você pediu e
+vou testar uma ideia também, posso te mostrar as duas?" Muda tudo.
+
+[09:42] ROGÉRIO: Certo. Vamos falar de técnico. Como tá seu SQL?
+
+[09:48] CAIO: Sólido pro dia a dia. Junção, agregação, função de janela, CTE. Eu
+escrevo consulta de fechamento que roda sobre uns cem milhões de linhas de nota
+fiscal. Onde eu sou mais fraco é otimização profunda — plano de execução, índice,
+particionamento. Eu sei ler um plano, mas não sou a pessoa que vai resolver o
+problema difícil de performance.
+
+[10:20] ROGÉRIO: Interessante você falar isso. E Python?
+
+[10:25] CAIO: Uso pra automação e tratamento. Pandas, requests, um pouco de
+orquestração. Não sou desenvolvedor. Meu código funciona e é organizado, mas um
+engenheiro de verdade ia melhorar bastante.
+
+[10:44] ROGÉRIO: Power BI?
+
+[10:47] CAIO: A gente usa bastante. Eu construo, publico, faço DAX. Confortável.
+
+[10:56] ROGÉRIO: E dbt e Airflow, que a gente quer começar a usar?
+
+[11:02] CAIO: dbt eu fiz curso e montei projeto de estudo, uns trinta modelos, com
+teste. Em produção nunca rodei. Airflow eu só li a respeito, nunca usei de verdade.
+
+[11:18] ROGÉRIO: Tá. E Azure?
+
+[11:21] CAIO: Nunca trabalhei. Na Meridiano é tudo servidor local, SQL Server na
+casa da gente mesmo.
+
+[11:32] ROGÉRIO: Hmm. Ok.
+
+[11:40] ROGÉRIO: Me fala do projeto de indicadores comerciais, que você colocou no
+currículo.
+
+[11:47] CAIO: Foi um projeto de uns cinco meses pra reformular o painel comercial
+inteiro. A gente redesenhou os indicadores junto com a área, refez a base e entregou
+um painel novo.
+
+[12:05] ROGÉRIO: E você liderou isso?
+
+[12:09] CAIO: A gente era em três. A Letícia era quem coordenava formalmente, ela é
+a coordenadora da área. Eu puxei a parte de definição dos indicadores com o comercial
+e a modelagem da base. A parte de visual foi mais o Bruno.
+
+[12:32] ROGÉRIO: Entendi.
+
+[12:36] PAULA: Caio, e como é seu jeito de trabalhar em time? Você se considera mais
+independente ou colaborativo?
+
+[12:45] CAIO: Acho que depende da fase. Pra entender problema eu preciso muito de
+conversa, eu vou atrás das pessoas. Pra construir eu prefiro ficar sozinho e depois
+mostrar.
+
+[13:02] ROGÉRIO: Deixa eu voltar num ponto. Você falou que refez a base do projeto
+comercial. O que exatamente você fez ali?
+
+[13:12] CAIO: A gente reorganizou as tabelas, criou umas visões intermediárias pra
+não ter que repetir a mesma regra em cinco lugares diferentes, e padronizou a
+granularidade dos indicadores, que era o problema principal — cada relatório contava
+"pedido" de um jeito.
+
+[13:36] ROGÉRIO: Certo, certo. Bom, acho que deu pra ter uma ideia.
+
+================================================================================
+BLOCO — PERGUNTAS DO CANDIDATO
+================================================================================
+
+[14:02] PAULA: Caio, você tem perguntas pra gente?
+
+[14:07] CAIO: Tenho três. A primeira: quando você diz que quer o modelo de vendas
+refeito em três meses, isso é junto com atender a fila do dia a dia ou a pessoa vai
+poder focar?
+
+[14:24] ROGÉRIO: (pausa) Boa. Sinceramente, hoje seria junto. Mas eu reconheço que
+isso é meio inviável.
+
+[14:35] CAIO: É que se for junto, o modelo não sai. Eu já passei por isso. A segunda
+pergunta: quem decide a prioridade da fila hoje?
+
+[14:48] ROGÉRIO: Na prática, quem grita mais alto. Eu tento organizar mas não
+consigo.
+
+[14:56] CAIO: Ok. E a terceira: qual foi o último relatório que vocês pararam de
+fazer?
+
+[15:04] ROGÉRIO: (pausa longa) Acho que nenhum.
+
+[15:12] CAIO: Então provavelmente tem uns trinta por cento da fila que é coisa que
+ninguém abre mais. Foi assim lá. Quando a gente mediu quem abria o quê, deu pra
+desligar bastante coisa. Talvez isso resolva mais rápido do que contratar.
+
+[15:34] ROGÉRIO: (rindo) Você tá tentando não ser contratado?
+
+[15:38] CAIO: Não, mas eu preferia entrar num lugar onde o problema tá bem entendido.
+
+================================================================================
+BLOCO — FECHAMENTO
+================================================================================
+
+[15:52] PAULA: Caio, sobre a parte de remuneração, qual sua expectativa?
+
+[15:58] CAIO: Eu queria entender a faixa de vocês antes, se puder.
+
+[16:04] PAULA: A gente ainda tá fechando isso internamente, te retorno.
+
+[16:12] PAULA: Próximos passos: a gente conversa internamente e te dá retorno até o
+fim da semana que vem. Pode ser que tenha uma etapa técnica.
+
+[16:25] CAIO: Combinado. Obrigado pelo tempo, gostei da conversa. Principalmente por
+vocês terem sido honestos sobre o problema.
+
+[16:36] ROGÉRIO: Obrigado, Caio.
+
+[FIM DA TRANSCRIÇÃO]

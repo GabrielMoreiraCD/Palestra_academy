@@ -1,0 +1,38 @@
+Transcrição de áudio — WhatsApp
+De: Rogério Bastos (Gerente de Planejamento e Dados)
+Para: RH
+Duração: 2min14s
+Data: 24/08/2026
+
+[TRANSCRIÇÃO AUTOMÁTICA — pode conter erros]
+
+oi bom dia, tudo bem? olha, preciso muito de uma ajuda aqui com uma contratação, tá
+ficando insustentável. o time tá completamente afogado, a gente tem hoje três pessoas e
+a fila de pedido de relatório não anda, as áreas ficam cobrando direto, semana passada
+comercial esperou nove dias por um número que devia sair no mesmo dia. eu mesmo tô
+entrando no banco pra tirar consulta, o que não faz sentido nenhum né
+
+então assim, eu preciso de um analista de dados, nível pleno eu acho, alguém que já
+saiba fazer sem eu ficar em cima. tem que saber SQL bem, isso é obrigatório, e Python
+também, e Power BI porque todo mundo aqui usa, e seria ótimo se soubesse dbt que a gente
+tá querendo começar a usar, e Airflow, e se tiver experiência com Azure melhor ainda
+porque nossa stack toda tá lá, e modelagem dimensional é fundamental porque a gente tem
+um modelo que tá um horror e precisa ser refeito
+
+ah e tem que saber conversar com área de negócio, isso é essencial, porque metade do
+problema é que a pessoa recebe um pedido de relatório e faz o relatório, entendeu, e
+não é isso que a gente precisa, precisa alguém que entenda o que a área realmente quer
+antes de sair fazendo. isso pra mim é o mais importante na verdade
+
+sobre perfil, eu queria alguém jovem, sabe, com energia, que queira crescer junto,
+porque o time é novo e a gente tá construindo tudo ainda. e de preferência alguém sem
+muito compromisso pra poder pegar junto no começo, sabe como é, vai ter uns meses mais
+puxados. ah e queria alguém de faculdade boa, USP, Unicamp, essas, porque a base tem
+que ser sólida
+
+o que eu preciso que aconteça: em três meses eu quero que a fila de pedido esteja zerada
+e que as áreas parem de me procurar direto, e que o modelo de vendas esteja refeito. se
+isso acontecer eu considero que deu certo
+
+qualquer coisa me chama, mas é urgente viu, se der pra abrir a vaga essa semana ajuda
+demais

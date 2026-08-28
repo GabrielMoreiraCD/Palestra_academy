@@ -1,0 +1,128 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "avaliacao.schema.json",
+  "title": "Avaliacao de entrevista",
+  "description": "Avaliacao ancorada em trechos literais da transcricao. Os campos decisao e decidido_por sao preenchidos por PESSOA, nunca pelo copiloto.",
+  "type": "object",
+  "required": [
+    "vaga_id",
+    "candidato_id",
+    "data_entrevista",
+    "entrevistadores",
+    "resultados",
+    "gaps_para_onboarding",
+    "decisao",
+    "decidido_por"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "vaga_id": { "type": "string" },
+    "candidato_id": { "type": "string" },
+    "data_entrevista": { "type": "string", "format": "date" },
+    "entrevistadores": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "resultados": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["criterio_id", "resultado", "trechos", "leitura", "nao_sabemos"],
+        "additionalProperties": false,
+        "properties": {
+          "criterio_id": { "type": "string", "pattern": "^c[0-9]+$" },
+          "resultado": {
+            "type": "string",
+            "enum": ["SUPERA", "ATENDE", "NAO_DEMONSTRADO", "PREOCUPACAO"]
+          },
+          "trechos": {
+            "type": "array",
+            "description": "Vazio SOMENTE quando resultado e NAO_DEMONSTRADO.",
+            "items": {
+              "type": "object",
+              "required": ["citacao", "localizacao"],
+              "additionalProperties": false,
+              "properties": {
+                "citacao": { "type": "string", "minLength": 1 },
+                "localizacao": { "type": "string", "examples": ["[07:05]", "bloco Nucleo"] }
+              }
+            }
+          },
+          "leitura": { "type": "string", "description": "Interpretacao, explicitamente marcada como tal." },
+          "nao_sabemos": { "type": "string", "description": "O que a conversa nao esclareceu sobre este criterio." }
+        },
+        "allOf": [
+          {
+            "if": { "properties": { "resultado": { "enum": ["SUPERA", "ATENDE", "PREOCUPACAO"] } } },
+            "then": { "properties": { "trechos": { "minItems": 1 } } }
+          }
+        ]
+      }
+    },
+    "contradicoes": {
+      "type": "array",
+      "description": "Divergencia factual entre fontes. Vira SEMPRE pergunta neutra, nunca acusacao.",
+      "items": {
+        "type": "object",
+        "required": ["fonte_a", "fonte_b", "pergunta"],
+        "additionalProperties": false,
+        "properties": {
+          "fonte_a": { "type": "string" },
+          "fonte_b": { "type": "string" },
+          "pergunta": { "type": "string" }
+        }
+      }
+    },
+    "sinais_fracos": {
+      "type": "array",
+      "description": "Nunca listar sinal fraco sem a pergunta que o confirmaria ou derrubaria.",
+      "items": {
+        "type": "object",
+        "required": ["sinal", "pergunta", "aviso"],
+        "additionalProperties": false,
+        "properties": {
+          "sinal": { "type": "string" },
+          "pergunta": { "type": "string" },
+          "aviso": { "type": "string", "const": "sinal fraco, nao conclusao" }
+        }
+      }
+    },
+    "problemas_do_processo": {
+      "type": "array",
+      "description": "Falhas do roteiro ou perguntas indevidas feitas pelos entrevistadores.",
+      "items": {
+        "type": "object",
+        "required": ["ocorrencia", "problema", "acao"],
+        "additionalProperties": false,
+        "properties": {
+          "ocorrencia": { "type": "string" },
+          "problema": { "type": "string" },
+          "acao": { "type": "string" }
+        }
+      }
+    },
+    "gaps_para_onboarding": {
+      "type": "array",
+      "description": "Ponte para o Modulo 4. Cada gap vira item de trilha com campo origem.",
+      "items": {
+        "type": "object",
+        "required": ["criterio_id", "descricao", "sugestao_trilha"],
+        "additionalProperties": false,
+        "properties": {
+          "criterio_id": { "type": "string" },
+          "descricao": { "type": "string" },
+          "sugestao_trilha": { "type": "string" }
+        }
+      }
+    },
+    "desafio_tecnico_recomendado": { "type": ["boolean", "null"] },
+    "proxima_etapa_sugerida": { "type": ["string", "null"] },
+    "decisao": {
+      "type": ["string", "null"],
+      "enum": ["avancar", "nao_avancar", "aguardando", null],
+      "description": "SEMPRE null quando gerado pelo copiloto. Preenchido por pessoa no sistema."
+    },
+    "decidido_por": {
+      "type": ["string", "null"],
+      "description": "SEMPRE null quando gerado pelo copiloto. Nome de quem decidiu, para rastreabilidade."
+    }
+  }
+}

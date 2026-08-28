@@ -1,0 +1,88 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "matriz_evidencia.schema.json",
+  "title": "Matriz de evidencia",
+  "description": "Organizacao de evidencia por criterio e por candidato. NAO e ranking, NAO e triagem, NAO recomenda corte.",
+  "type": "object",
+  "required": ["vaga_id", "gerado_em", "candidatos", "aviso"],
+  "additionalProperties": false,
+  "properties": {
+    "vaga_id": { "type": "string" },
+    "gerado_em": { "type": "string", "format": "date" },
+    "candidatos": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["candidato_id", "nome", "cobertura_essenciais", "avaliacoes", "pontos_a_esclarecer"],
+        "additionalProperties": false,
+        "properties": {
+          "candidato_id": { "type": "string" },
+          "nome": { "type": "string" },
+          "cobertura_essenciais": {
+            "type": "string",
+            "pattern": "^[0-9]+/[0-9]+$",
+            "description": "Criterios ESSENCIAL com status EVIDENCIA sobre o total. Mede documentacao, nao pessoa."
+          },
+          "avaliacoes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["criterio_id", "status", "fonte"],
+              "additionalProperties": false,
+              "properties": {
+                "criterio_id": { "type": "string", "pattern": "^c[0-9]+$" },
+                "status": {
+                  "type": "string",
+                  "enum": ["EVIDENCIA", "INDICIO", "AUSENTE", "CONTRADICAO"]
+                },
+                "trecho": {
+                  "type": ["string", "null"],
+                  "description": "Citacao literal. Obrigatoria quando status e EVIDENCIA, INDICIO ou CONTRADICAO."
+                },
+                "fonte": { "type": "string", "examples": ["CV", "entrevista", "briefing"] },
+                "observacao": { "type": ["string", "null"] },
+                "pergunta_sugerida": { "type": ["string", "null"] }
+              },
+              "allOf": [
+                {
+                  "if": { "properties": { "status": { "enum": ["EVIDENCIA", "INDICIO", "CONTRADICAO"] } } },
+                  "then": { "properties": { "trecho": { "type": "string", "minLength": 1 } }, "required": ["trecho"] }
+                },
+                {
+                  "if": { "properties": { "status": { "const": "AUSENTE" } } },
+                  "then": { "required": ["pergunta_sugerida"] }
+                }
+              ]
+            }
+          },
+          "pontos_a_esclarecer": {
+            "type": "array",
+            "description": "Trajetoria atipica: SEMPRE pergunta, NUNCA desconto na avaliacao.",
+            "items": {
+              "type": "object",
+              "required": ["sinal", "pergunta", "natureza"],
+              "additionalProperties": false,
+              "properties": {
+                "sinal": { "type": "string" },
+                "pergunta": { "type": "string" },
+                "natureza": {
+                  "type": "string",
+                  "const": "esclarecimento, nao ponto negativo"
+                }
+              }
+            }
+          },
+          "dado_pessoal_omitido": {
+            "type": "boolean",
+            "description": "true quando o material continha dado pessoal desnecessario que foi omitido do artefato."
+          }
+        }
+      }
+    },
+    "aviso": {
+      "type": "string",
+      "const": "Esta matriz nao recomenda contratacao nem eliminacao. Decisao humana obrigatoria."
+    }
+  }
+}

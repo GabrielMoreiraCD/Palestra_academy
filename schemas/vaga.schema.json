@@ -1,0 +1,106 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "vaga.schema.json",
+  "title": "Vaga",
+  "description": "Perfil de vaga estruturado, gerado pelo Modulo 1 do copiloto-rh a partir do briefing do gestor.",
+  "type": "object",
+  "required": [
+    "vaga_id",
+    "titulo",
+    "area",
+    "gestor",
+    "senioridade",
+    "problema_a_resolver",
+    "entregas_esperadas_90_dias",
+    "criterios",
+    "lacunas_do_briefing"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "vaga_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "description": "Identificador kebab-case derivado do titulo."
+    },
+    "titulo": { "type": "string", "minLength": 3 },
+    "area": { "type": "string" },
+    "gestor": { "type": "string" },
+    "senioridade": { "type": "string", "enum": ["junior", "pleno", "senior"] },
+    "problema_a_resolver": {
+      "type": "string",
+      "minLength": 20,
+      "description": "1 a 2 frases derivadas dos SINTOMAS do briefing. Nao e descricao de cargo."
+    },
+    "entregas_esperadas_90_dias": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string" }
+    },
+    "criterios": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "nome",
+          "tipo",
+          "comportamento_observavel",
+          "como_verificar",
+          "origem_briefing"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "pattern": "^c[0-9]+$" },
+          "nome": { "type": "string" },
+          "tipo": {
+            "type": "string",
+            "enum": ["OBRIGATORIO_OBJETIVO", "ESSENCIAL", "IMPORTANTE", "DESEJAVEL"]
+          },
+          "comportamento_observavel": {
+            "type": "string",
+            "description": "O que a pessoa FAZ quando tem esta competencia. Nao e nome de ferramenta."
+          },
+          "como_verificar": { "type": "string" },
+          "origem_briefing": {
+            "type": "string",
+            "description": "Trecho literal do briefing que gerou o criterio, ou 'inferido - confirmar'."
+          }
+        }
+      }
+    },
+    "criterios_recusados": {
+      "type": "array",
+      "description": "Pedidos do gestor nao incorporados por serem caracteristica protegida ou proxy.",
+      "items": {
+        "type": "object",
+        "required": ["texto_original", "motivo", "alternativa_proposta"],
+        "additionalProperties": false,
+        "properties": {
+          "texto_original": { "type": "string" },
+          "motivo": { "type": "string" },
+          "alternativa_proposta": { "type": "string" }
+        }
+      }
+    },
+    "faixa_salarial": {
+      "type": ["object", "null"],
+      "description": "null quando o briefing nao informou. NUNCA preencher por conta propria.",
+      "additionalProperties": false,
+      "properties": {
+        "min": { "type": "number" },
+        "max": { "type": "number" },
+        "moeda": { "type": "string" }
+      }
+    },
+    "modelo_trabalho": {
+      "type": ["string", "null"],
+      "enum": ["presencial", "hibrido", "remoto", null]
+    },
+    "lacunas_do_briefing": {
+      "type": "array",
+      "description": "O que o gestor precisa responder para a vaga ficar completa.",
+      "items": { "type": "string" }
+    }
+  }
+}

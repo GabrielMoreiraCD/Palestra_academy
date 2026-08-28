@@ -1,0 +1,19 @@
+# Notas pessoais — não fazem parte do material da palestra
+Solicitação.txt
+facilitador/ROTEIRO.md
+gabarito/*.md
+
+# Saída gerada localmente
+saida/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
